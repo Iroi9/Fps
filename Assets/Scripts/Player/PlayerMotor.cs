@@ -8,7 +8,7 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 playerVelocity;
     private float motorSpeed = 5f;
     private bool isGrounded;
-    private float gravity = -9.8f;
+    private float gravity = -15f;
     [SerializeField] private float jumpHight = 3f;
     // Start is called before the first frame update
     void Start()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BulletWeapon : MonoBehaviour
 {
-    public Camera camera;
+    
 
     //Shooting
     public bool isShooting, readyToShoot;
@@ -26,7 +26,12 @@ public class BulletWeapon : MonoBehaviour
     [SerializeField] Transform bulletSpawn;
     [SerializeField] float bulletVelocity = 100;
     [SerializeField] float bulletLife = 3f;
-    
+
+    //Animations
+    public GameObject muzzleEffect;
+    private Animator animator;
+
+
     public enum ShootingMode
     {
         Single,
@@ -40,6 +45,7 @@ public class BulletWeapon : MonoBehaviour
     {
         readyToShoot = true;
         burstBulletsLeft = bulletsPerBurst;
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -66,7 +72,12 @@ public class BulletWeapon : MonoBehaviour
     }
 
     private void fireWeapon()
-    {   
+    {
+
+        muzzleEffect.GetComponent<ParticleSystem>().Play();
+        animator.SetTrigger("RECOIL");
+        SoundManager.Instance.shootingSound1911.Play();
+
         readyToShoot = false;
 
         Vector3 shootingDirection = CalculateDirectionAndSpred().normalized; 
@@ -103,7 +114,7 @@ public class BulletWeapon : MonoBehaviour
 
     public Vector3 CalculateDirectionAndSpred()
     {
-        Ray ray = camera.ViewportPointToRay(new Vector3(0.5f,0.5f,0));
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f,0));
         RaycastHit hit;
 
         Vector3 targepoint;
@@ -113,7 +124,7 @@ public class BulletWeapon : MonoBehaviour
             targepoint = hit.point;
         }else
         {
-            targepoint = ray.GetPoint(1);
+            targepoint = ray.GetPoint(100);
         }
 
         Vector3 direction = targepoint - bulletSpawn.position;

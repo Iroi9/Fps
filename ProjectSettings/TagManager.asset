@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Target
+  - Wall
+  - Floor
+  - Door
   layers:
   - Default
   - TransparentFX

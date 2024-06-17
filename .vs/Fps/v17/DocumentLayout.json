@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "D:\\Unity\\Projects\\Fps\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|D:\\Unity\\Projects\\Fps\\assets\\scripts\\weapons\\bulletweapon\\bulletweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|d:\\unity\\projects\\fps\\assets\\scripts\\weapons\\bulletweapon\\bulletweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\weapons\\bulletweapon\\bulletweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|D:\\Unity\\Projects\\Fps\\assets\\scripts\\player\\playerinteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerinteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|d:\\unity\\projects\\fps\\assets\\scripts\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Weapons\\BulletWeapon\\Bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:Assets\\Scripts\\Weapons\\BulletWeapon\\Bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|D:\\Unity\\Projects\\Fps\\assets\\scripts\\globalref.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\globalref.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|D:\\Unity\\Projects\\Fps\\assets\\scripts\\weapons\\bulletweapon\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\weapons\\bulletweapon\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,7 +36,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Weapons\\BulletWeapon\\BulletWeapon.cs",
               "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Weapons\\BulletWeapon\\BulletWeapon.cs",
               "RelativeToolTip": "Assets\\Scripts\\Weapons\\BulletWeapon\\BulletWeapon.cs",
-              "ViewState": "AQIAADsAAAAAAAAAAAAIwE0AAAAgAAAA",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAIwE8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-01T03:42:21.341Z",
               "IsPinned": true,
@@ -41,24 +45,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PlayerInteract.cs",
-              "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Player\\PlayerInteract.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerInteract.cs",
-              "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Player\\PlayerInteract.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerInteract.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAEAAAA",
+              "Title": "SoundManager.cs",
+              "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\SoundManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\SoundManager.cs",
+              "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\SoundManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\SoundManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-02T10:01:24.763Z"
+              "WhenOpened": "2024-06-17T21:59:03.756Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "GlobalRef.cs",
+              "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\GlobalRef.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GlobalRef.cs",
+              "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\GlobalRef.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GlobalRef.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T19:52:14.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Bullet.cs",
               "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Weapons\\BulletWeapon\\Bullet.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Weapons\\BulletWeapon\\Bullet.cs",
               "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Weapons\\BulletWeapon\\Bullet.cs",
               "RelativeToolTip": "Assets\\Scripts\\Weapons\\BulletWeapon\\Bullet.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAA1AAAA",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAQwB0AAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-01T03:42:28.272Z"
             }

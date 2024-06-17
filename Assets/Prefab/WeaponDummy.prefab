@@ -154,4 +154,4 @@ MonoBehaviour:
   bulletSpawn: {fileID: 0}
   bulletVelocity: 30
   bulletLife: 3
-  currShootingMode: 0
+  currShootingMode: 2
