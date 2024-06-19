@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "D:\\Unity\\Projects\\Fps\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|d:\\unity\\projects\\fps\\assets\\scripts\\weapons\\bulletweapon\\bulletweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\weapons\\bulletweapon\\bulletweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|d:\\unity\\projects\\fps\\assets\\scripts\\interactables\\weapons\\bulletweapon\\bulletweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interactables\\weapons\\bulletweapon\\bulletweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|d:\\unity\\projects\\fps\\assets\\scripts\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|D:\\Unity\\Projects\\Fps\\assets\\scripts\\weaponmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\weaponmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|D:\\Unity\\Projects\\Fps\\assets\\scripts\\player\\playerinteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerinteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|D:\\Unity\\Projects\\Fps\\assets\\scripts\\interactable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interactable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|D:\\Unity\\Projects\\Fps\\assets\\scripts\\globalref.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\globalref.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|D:\\Unity\\Projects\\Fps\\assets\\scripts\\weapons\\bulletweapon\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\weapons\\bulletweapon\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|D:\\Unity\\Projects\\Fps\\assets\\scripts\\interactables\\keypad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{921D756A-D44B-5E82-6A11-F47626C8AFDA}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interactables\\keypad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,59 +34,83 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BulletWeapon.cs",
-              "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Weapons\\BulletWeapon\\BulletWeapon.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Weapons\\BulletWeapon\\BulletWeapon.cs",
-              "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Weapons\\BulletWeapon\\BulletWeapon.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Weapons\\BulletWeapon\\BulletWeapon.cs",
-              "ViewState": "AQIAAD4AAAAAAAAAAAAIwE8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-01T03:42:21.341Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SoundManager.cs",
-              "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\SoundManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\SoundManager.cs",
-              "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\SoundManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\SoundManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T21:59:03.756Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GlobalRef.cs",
               "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\GlobalRef.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GlobalRef.cs",
               "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\GlobalRef.cs",
               "RelativeToolTip": "Assets\\Scripts\\GlobalRef.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T19:52:14.661Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T21:51:04.519Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Keypad.cs",
+              "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Interactables\\Keypad.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Interactables\\Keypad.cs",
+              "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Interactables\\Keypad.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Interactables\\Keypad.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T21:45:29.829Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Bullet.cs",
-              "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Weapons\\BulletWeapon\\Bullet.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Weapons\\BulletWeapon\\Bullet.cs",
-              "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Weapons\\BulletWeapon\\Bullet.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Weapons\\BulletWeapon\\Bullet.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAQwB0AAAAxAAAA",
+              "Title": "Interactable.cs",
+              "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Interactable.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Interactable.cs",
+              "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Interactable.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Interactable.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-01T03:42:28.272Z"
+              "WhenOpened": "2024-06-18T21:12:16.83Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerInteract.cs",
+              "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Player\\PlayerInteract.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerInteract.cs",
+              "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Player\\PlayerInteract.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerInteract.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwCUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T21:12:09.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BulletWeapon.cs",
+              "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Interactables\\Weapons\\BulletWeapon\\BulletWeapon.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Interactables\\Weapons\\BulletWeapon\\BulletWeapon.cs",
+              "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\Interactables\\Weapons\\BulletWeapon\\BulletWeapon.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Interactables\\Weapons\\BulletWeapon\\BulletWeapon.cs",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAIwFgAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T19:41:56.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WeaponManager.cs",
+              "DocumentMoniker": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\WeaponManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\WeaponManager.cs",
+              "ToolTip": "D:\\Unity\\Projects\\Fps\\Assets\\Scripts\\WeaponManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\WeaponManager.cs",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAuwFIAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T19:34:28.423Z",
+              "EditorCaption": ""
             }
           ]
         }

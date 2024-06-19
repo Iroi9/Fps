@@ -71,6 +71,33 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""875fedc8-62d1-4685-bae7-63bfc58271c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWepSlot1"",
+                    ""type"": ""Button"",
+                    ""id"": ""16339ee3-c104-426a-b10b-822dc3123e90"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWepSlot2"",
+                    ""type"": ""Button"",
+                    ""id"": ""8bea8f88-554f-4c11-9d38-9647baf88f7f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -269,6 +296,39 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d56565fa-5a49-4b8a-8959-e8f7b4a3895b"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a1031c1-7d5c-46ad-b42a-5569b41e4b7c"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWepSlot1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b802261-c85f-4593-b21c-5cbbbc6ae4b8"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWepSlot2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -800,6 +860,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_onFoot_Look = m_onFoot.FindAction("Look", throwIfNotFound: true);
         m_onFoot_Interact = m_onFoot.FindAction("Interact", throwIfNotFound: true);
         m_onFoot_Shoot = m_onFoot.FindAction("Shoot", throwIfNotFound: true);
+        m_onFoot_Reload = m_onFoot.FindAction("Reload", throwIfNotFound: true);
+        m_onFoot_SwitchWepSlot1 = m_onFoot.FindAction("SwitchWepSlot1", throwIfNotFound: true);
+        m_onFoot_SwitchWepSlot2 = m_onFoot.FindAction("SwitchWepSlot2", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -878,6 +941,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_onFoot_Look;
     private readonly InputAction m_onFoot_Interact;
     private readonly InputAction m_onFoot_Shoot;
+    private readonly InputAction m_onFoot_Reload;
+    private readonly InputAction m_onFoot_SwitchWepSlot1;
+    private readonly InputAction m_onFoot_SwitchWepSlot2;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -887,6 +953,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_onFoot_Look;
         public InputAction @Interact => m_Wrapper.m_onFoot_Interact;
         public InputAction @Shoot => m_Wrapper.m_onFoot_Shoot;
+        public InputAction @Reload => m_Wrapper.m_onFoot_Reload;
+        public InputAction @SwitchWepSlot1 => m_Wrapper.m_onFoot_SwitchWepSlot1;
+        public InputAction @SwitchWepSlot2 => m_Wrapper.m_onFoot_SwitchWepSlot2;
         public InputActionMap Get() { return m_Wrapper.m_onFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -911,6 +980,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
+            @SwitchWepSlot1.started += instance.OnSwitchWepSlot1;
+            @SwitchWepSlot1.performed += instance.OnSwitchWepSlot1;
+            @SwitchWepSlot1.canceled += instance.OnSwitchWepSlot1;
+            @SwitchWepSlot2.started += instance.OnSwitchWepSlot2;
+            @SwitchWepSlot2.performed += instance.OnSwitchWepSlot2;
+            @SwitchWepSlot2.canceled += instance.OnSwitchWepSlot2;
         }
 
         private void UnregisterCallbacks(IOnFootActions instance)
@@ -930,6 +1008,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
+            @SwitchWepSlot1.started -= instance.OnSwitchWepSlot1;
+            @SwitchWepSlot1.performed -= instance.OnSwitchWepSlot1;
+            @SwitchWepSlot1.canceled -= instance.OnSwitchWepSlot1;
+            @SwitchWepSlot2.started -= instance.OnSwitchWepSlot2;
+            @SwitchWepSlot2.performed -= instance.OnSwitchWepSlot2;
+            @SwitchWepSlot2.canceled -= instance.OnSwitchWepSlot2;
         }
 
         public void RemoveCallbacks(IOnFootActions instance)
@@ -1072,6 +1159,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
+        void OnSwitchWepSlot1(InputAction.CallbackContext context);
+        void OnSwitchWepSlot2(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

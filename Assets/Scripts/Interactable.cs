@@ -6,12 +6,12 @@ public abstract class Interactable : MonoBehaviour
 {
     public string promtMessage;
 
-    public void BaseInteract()
+    public void BaseInteract(Interactable gameObject)
     {
-        Interact();
+        Interact(gameObject);
     }
     
-   protected virtual void Interact()
+   protected virtual void Interact(Interactable gameObject)
     {
 
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    private Camera camera;
+    Camera camera; 
     [SerializeField]private float distance = 3f;
     [SerializeField]private LayerMask mask;
     private PlayerUI playerUI;
@@ -12,9 +12,9 @@ public class PlayerInteract : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = GetComponent<PlayerLook>().cam;
         playerUI = GetComponent<PlayerUI>();
         inputManager = GetComponent<InputManager>();
+        camera = Camera.main;
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class PlayerInteract : MonoBehaviour
                 playerUI.UpdateText(interactable.promtMessage);
                 if (inputManager.onFootActions.Interact.triggered)
                 {
-                    interactable.BaseInteract();
+                    interactable.BaseInteract(interactable);
                 }
             }
         }
