@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
         onFootActions.Jump.performed += ctx => motor.Jump();
+        onFootActions.Sprint.performed += ctx => motor.Sprint();
 
 
     }

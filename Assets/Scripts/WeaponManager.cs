@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
+using System.Net;
 using UnityEngine;
+
 
 public class WeaponManager : MonoBehaviour
 
@@ -13,6 +15,8 @@ public class WeaponManager : MonoBehaviour
     public List<GameObject> weapons;
 
     public GameObject activeWeapon;
+
+    public int slot = 0;
 
     private void Awake()
     {
@@ -46,22 +50,40 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-        public void PickUpWeapon(Interactable gameObject)
+    public void PickUpWeapon(GameObject gameObject)
+    {
+        
+        if (weapons.ElementAtOrDefault(1).GetComponentInChildren<BulletWeapon>() == default && weapons[slot].GetComponentInChildren<BulletWeapon>() != null)
         {
+            SwitchActiveWeapon(1);
+        }
         AddWeaponIntoActiveSlot(gameObject);
+        if(weapons.ElementAtOrDefault(0).GetComponentInChildren<BulletWeapon>() != default)
+        {
+            HUDManager.Instance.GetSprites(gameObject.GetComponent<BulletWeapon>().weaponModel);
         }
 
-    private void AddWeaponIntoActiveSlot(Interactable gameObject)
+
+    }
+
+    private void AddWeaponIntoActiveSlot(GameObject gameObject)
     {
-
-        DropCurrentWeapon(gameObject);
-        gameObject.transform.SetParent(activeWeapon.transform, false);
-
         BulletWeapon weapon = gameObject.GetComponent<BulletWeapon>();
-        gameObject.transform.localPosition = new Vector3(weapon.spawnPos.x,weapon.spawnPos.y,weapon.spawnPos.y);
-        gameObject.transform.localRotation = Quaternion.Euler(weapon.spawnRot.x, weapon.spawnRot.y, weapon.spawnRot.y);
+        DropCurrentWeapon(weapon);
+        gameObject.transform.SetParent(activeWeapon.transform, false);
+        gameObject.transform.localPosition = new Vector3(weapon.spawnPos.x,weapon.spawnPos.y,weapon.spawnPos.z);
+        gameObject.transform.localRotation = Quaternion.Euler(weapon.spawnRot.x, weapon.spawnRot.y, weapon.spawnRot.z);
         gameObject.transform.localScale = new Vector3(weapon.spawnScale.x, weapon.spawnScale.y, weapon.spawnScale.z);
+        gameObject.layer = LayerMask.NameToLayer("WeaponRender");
         weapon.isActiveWeapon = true;
+        Destroy(weapon.GetComponent<Rigidbody>());
+        weapon.animator.enabled = true;
+        int childCount = weapon.transform.childCount;
+        for (int i = 0; i < childCount; i++)
+        {
+            weapon.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("WeaponRender");
+        }
+
     }
 
     private void DropCurrentWeapon(Interactable interactable)
@@ -75,25 +97,75 @@ public class WeaponManager : MonoBehaviour
             weaponToDrop.transform.localPosition = interactable.transform.localPosition;
             weaponToDrop.transform.localRotation = interactable.transform.localRotation;
             weaponToDrop.transform.localScale= interactable.transform.localScale;
+            weaponToDrop.AddComponent<Rigidbody>();
+            weaponToDrop.GetComponent<BulletWeapon>().animator.enabled = false;
+            weaponToDrop.layer = LayerMask.NameToLayer("Interactable");
+            int childCount = weaponToDrop.transform.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                weaponToDrop.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Interactable");
+            }
 
-            
+            weaponToDrop.GetComponent<Rigidbody>().useGravity = true;
         }
     }
 
-    public void SwitchActiveWeapon(int slotnumber)
+    public void DropCurrentWeapon()
     {
         if (activeWeapon.transform.childCount > 0)
         {
-            BulletWeapon weapon = activeWeapon.transform.GetChild(0).GetComponent<BulletWeapon>();
-            weapon.isActiveWeapon = false;
+            var weaponToDrop = activeWeapon.transform.GetChild(0).gameObject;
+            weaponToDrop.GetComponent<BulletWeapon>().isActiveWeapon = false;
+            while(weaponToDrop.transform.parent != null)
+            {
+                weaponToDrop.transform.parent = weaponToDrop.transform.parent.parent;
+            }
+            weaponToDrop.layer = LayerMask.NameToLayer("Interactable");
+            int childCount = weaponToDrop.transform.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                weaponToDrop.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Interactable");
+            }
+            weaponToDrop.GetComponent<BulletWeapon>().animator.enabled = false;
+            weaponToDrop.AddComponent<Rigidbody>();
+            weaponToDrop.GetComponent<Rigidbody>().mass = 2f;
+            weaponToDrop.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 400);
+            weaponToDrop.GetComponent<Rigidbody>().AddRelativeForce(Vector3.back * 400);
+
+
         }
+    }
+    public void SwitchActiveWeapon(int slotnumber)
+    {
+        if (activeWeapon != null)
+        {
+            BulletWeapon weapon = activeWeapon.transform.GetChild(0).GetComponent<BulletWeapon>();
+       
+            if (activeWeapon.transform.childCount > 0)
+            {   
+                weapon.isActiveWeapon = false;
+                if(slot == 0)
+                {
+                    slot = 1;
+                }
+                else
+                {
+                    slot = 0;
+                }
+            }
 
         activeWeapon = weapons[slotnumber];
 
         if (activeWeapon.transform.childCount > 0)
         {
             BulletWeapon newWeapon = activeWeapon.transform.GetChild(0).GetComponent<BulletWeapon>();
+            if (newWeapon != null && weapon != newWeapon)
+            {
+                HUDManager.Instance.GetSprites(newWeapon.GetComponent<BulletWeapon>().weaponModel);
+ 
+            }
             newWeapon.isActiveWeapon = true;
+            }
         }
     }
 }

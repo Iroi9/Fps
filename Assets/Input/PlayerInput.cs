@@ -98,6 +98,42 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""5cdf4ace-073e-4eb2-9eb2-4396cbf3f28a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""c2f5c181-697d-421d-adde-a84fbc22351e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c8aec50-7db4-44a4-b015-ac24cfbd6848"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ads"",
+                    ""type"": ""Button"",
+                    ""id"": ""50057bc9-2e54-4de6-8d3b-2673a0da8fab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -290,17 +326,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""91c3c47a-471b-467e-900c-c91951d78b0a"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d56565fa-5a49-4b8a-8959-e8f7b4a3895b"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
@@ -329,6 +354,50 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SwitchWepSlot2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8350fde4-55b1-47e1-a8df-ab6d1cfc4553"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""638f6c14-4921-4cfc-866a-616edb79c607"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03115cbd-5e0e-4fcc-b03b-8e16dd610158"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""538e92b4-e63e-4d2b-a5d0-8b181c2499b6"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ads"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -863,6 +932,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_onFoot_Reload = m_onFoot.FindAction("Reload", throwIfNotFound: true);
         m_onFoot_SwitchWepSlot1 = m_onFoot.FindAction("SwitchWepSlot1", throwIfNotFound: true);
         m_onFoot_SwitchWepSlot2 = m_onFoot.FindAction("SwitchWepSlot2", throwIfNotFound: true);
+        m_onFoot_Drop = m_onFoot.FindAction("Drop", throwIfNotFound: true);
+        m_onFoot_Sprint = m_onFoot.FindAction("Sprint", throwIfNotFound: true);
+        m_onFoot_Crouch = m_onFoot.FindAction("Crouch", throwIfNotFound: true);
+        m_onFoot_Ads = m_onFoot.FindAction("Ads", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -944,6 +1017,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_onFoot_Reload;
     private readonly InputAction m_onFoot_SwitchWepSlot1;
     private readonly InputAction m_onFoot_SwitchWepSlot2;
+    private readonly InputAction m_onFoot_Drop;
+    private readonly InputAction m_onFoot_Sprint;
+    private readonly InputAction m_onFoot_Crouch;
+    private readonly InputAction m_onFoot_Ads;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -956,6 +1033,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Reload => m_Wrapper.m_onFoot_Reload;
         public InputAction @SwitchWepSlot1 => m_Wrapper.m_onFoot_SwitchWepSlot1;
         public InputAction @SwitchWepSlot2 => m_Wrapper.m_onFoot_SwitchWepSlot2;
+        public InputAction @Drop => m_Wrapper.m_onFoot_Drop;
+        public InputAction @Sprint => m_Wrapper.m_onFoot_Sprint;
+        public InputAction @Crouch => m_Wrapper.m_onFoot_Crouch;
+        public InputAction @Ads => m_Wrapper.m_onFoot_Ads;
         public InputActionMap Get() { return m_Wrapper.m_onFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -989,6 +1070,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SwitchWepSlot2.started += instance.OnSwitchWepSlot2;
             @SwitchWepSlot2.performed += instance.OnSwitchWepSlot2;
             @SwitchWepSlot2.canceled += instance.OnSwitchWepSlot2;
+            @Drop.started += instance.OnDrop;
+            @Drop.performed += instance.OnDrop;
+            @Drop.canceled += instance.OnDrop;
+            @Sprint.started += instance.OnSprint;
+            @Sprint.performed += instance.OnSprint;
+            @Sprint.canceled += instance.OnSprint;
+            @Crouch.started += instance.OnCrouch;
+            @Crouch.performed += instance.OnCrouch;
+            @Crouch.canceled += instance.OnCrouch;
+            @Ads.started += instance.OnAds;
+            @Ads.performed += instance.OnAds;
+            @Ads.canceled += instance.OnAds;
         }
 
         private void UnregisterCallbacks(IOnFootActions instance)
@@ -1017,6 +1110,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SwitchWepSlot2.started -= instance.OnSwitchWepSlot2;
             @SwitchWepSlot2.performed -= instance.OnSwitchWepSlot2;
             @SwitchWepSlot2.canceled -= instance.OnSwitchWepSlot2;
+            @Drop.started -= instance.OnDrop;
+            @Drop.performed -= instance.OnDrop;
+            @Drop.canceled -= instance.OnDrop;
+            @Sprint.started -= instance.OnSprint;
+            @Sprint.performed -= instance.OnSprint;
+            @Sprint.canceled -= instance.OnSprint;
+            @Crouch.started -= instance.OnCrouch;
+            @Crouch.performed -= instance.OnCrouch;
+            @Crouch.canceled -= instance.OnCrouch;
+            @Ads.started -= instance.OnAds;
+            @Ads.performed -= instance.OnAds;
+            @Ads.canceled -= instance.OnAds;
         }
 
         public void RemoveCallbacks(IOnFootActions instance)
@@ -1162,6 +1267,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnReload(InputAction.CallbackContext context);
         void OnSwitchWepSlot1(InputAction.CallbackContext context);
         void OnSwitchWepSlot2(InputAction.CallbackContext context);
+        void OnDrop(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
+        void OnAds(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

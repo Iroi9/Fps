@@ -5,50 +5,65 @@ using UnityEngine;
 
 public class BulletWeapon : Interactable
 {
-     
 
     //Shooting
     public bool isShooting, readyToShoot;
     bool allowReset = true;
-    public float shootingDelay = 2f;
+    public float fireRate;
+    public float delay;
+    
 
     //Burst
-    public int bulletsPerBurst = 3;
+    public int bulletsPerBurst;
     public int burstBulletsLeft;
 
     //Spread
-    public float spreadIntensity;
+    private float spreadIntensity;
+    public float hipSpreadIntensity;
+    public float adsSpreadIntensity;
 
-    
+
     private InputManager playerInput;
     //Bullet
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletSpawn;
-    [SerializeField] float bulletVelocity = 100;
-    [SerializeField] float bulletLife = 3f;
+    [SerializeField] float bulletVelocity;
+    [SerializeField] float bulletLife;
     [SerializeField] bool isReloading;
 
     //Reload
     [SerializeField] float reloadTime;
-    [SerializeField] int magazineSize, bulletsLeft;
-    private int maxAmmo;
+    [SerializeField] internal int magazineSize, bulletsLeft;
+    internal int maxAmmo;
     //Animations
     public GameObject muzzleEffect;
-    private Animator animator;
+    internal Animator animator;
 
     //Pos on Player
     public Vector3 spawnPos;
     public Vector3 spawnRot;
     public Vector3 spawnScale;
 
+    bool isADS;
+
     public bool isActiveWeapon;
     public enum WeaponModel
     {
         Pistol1911,
-        AK47
+        AK47,
+        BennelliM4
     }
 
     public WeaponModel weaponModel;
+
+    public enum WeaponType
+    {
+        Pistol,
+        AssaultRifle,
+        Shotgun
+    }
+    
+    public WeaponType weaponType;
     public enum ShootingMode
     {
         Single,
@@ -65,6 +80,7 @@ public class BulletWeapon : Interactable
         animator = GetComponent<Animator>();
         bulletsLeft = magazineSize;
         maxAmmo = magazineSize * 3;
+        spreadIntensity = hipSpreadIntensity;
     }
 
     // Start is called before the first frame update
@@ -80,18 +96,32 @@ public class BulletWeapon : Interactable
         {
             playerInput = GetComponentInParent<InputManager>();
         }
-        else if (playerInput.onFootActions.SwitchWepSlot1.IsPressed())
+        else if (playerInput.onFootActions.SwitchWepSlot1.IsPressed() && WeaponManager.Instance.slot != 0 && WeaponManager.Instance.weapons[0].GetComponentInChildren<BulletWeapon>() != null)
         {
             ChangeWeapon(0);
         }
-        else if(playerInput.onFootActions.SwitchWepSlot2.IsPressed())
+        else if(playerInput.onFootActions.SwitchWepSlot2.IsPressed() && WeaponManager.Instance.slot != 1 && WeaponManager.Instance.weapons[1].GetComponentInChildren<BulletWeapon>() != null)
         {
             ChangeWeapon(1);
+        }
+        else if (playerInput.onFootActions.Drop.IsPressed())
+        {
+            DropAction();
         }
         else
         {
             if (isActiveWeapon)
             {
+
+                if (playerInput.onFootActions.Ads.ReadValue<float>() == 1.0 && isADS == false)
+                {
+                   EnterAds();
+                }
+                if(playerInput.onFootActions.Ads.ReadValue<float>() == 0.0 && isADS == true)
+                {
+                   ExitAds();
+                }
+
                 if (bulletsLeft == 0 && isShooting)
                 {
                     SoundManager.Instance.emptySound1911.Play();
@@ -110,6 +140,7 @@ public class BulletWeapon : Interactable
                 {
                     burstBulletsLeft = bulletsPerBurst;
                     FireWeapon();
+
                 }
 
                 if (maxAmmo > 0)
@@ -125,10 +156,6 @@ public class BulletWeapon : Interactable
                     }
                 }
 
-                if (AmmoManager.Instance.ammoDisplay != null)
-                {
-                    AmmoManager.Instance.ammoDisplay.text = $"{bulletsLeft / bulletsPerBurst}/{maxAmmo / bulletsPerBurst}";
-                }
             }
         }
        
@@ -138,8 +165,39 @@ public class BulletWeapon : Interactable
     private void FireWeapon()
     {
         bulletsLeft--;
-        muzzleEffect.GetComponent<ParticleSystem>().Play();
-        animator.SetTrigger("RECOIL");
+        
+        if (weaponType != WeaponType.Shotgun)
+        {
+            muzzleEffect.GetComponent<ParticleSystem>().Play();
+            if (isADS)
+            {
+                animator.SetTrigger("RECOIL_ADS");
+            }
+            else
+            {
+                animator.SetTrigger("RECOIL");
+            }
+        }
+        else
+        {
+            muzzleEffect.GetComponent<ParticleSystem>().Play();
+            if (burstBulletsLeft > bulletsPerBurst-1)
+            {
+                if (isADS)
+                {
+                    animator.SetTrigger("RECOIL_ADS");
+                }
+                else
+                {
+                    animator.SetTrigger("RECOIL");
+                }
+            }
+        }
+        
+        
+        
+        
+        
         SoundManager.Instance.PlayShootingSound(weaponModel);
 
         readyToShoot = false;
@@ -159,20 +217,52 @@ public class BulletWeapon : Interactable
 
         //check if we are done Shooting
         if (allowReset) {
-            Invoke("ResetShot", shootingDelay);
-            allowReset = false;
+            if(fireRate == 0)
+            {
+                Invoke("ResetShot", delay);
+                allowReset = false;
+            }
+            else 
+            {
+                Invoke("ResetShot", fireRate);
+                allowReset = false;
+            }
+            
         }
         
         //BurstMode
-        if (currShootingMode == ShootingMode.Burst && burstBulletsLeft > 1) {
+        if (currShootingMode == ShootingMode.Burst && burstBulletsLeft > 0) {
             burstBulletsLeft--;
-            Invoke("FireWeapon", shootingDelay);
+            Invoke("FireWeapon", fireRate);
         }
     }
 
+    private void EnterAds()
+    {
+        animator.SetTrigger("ENTER_ADS");
+        isADS = true;
+        HUDManager.Instance.crosshair.SetActive(false);
+        spreadIntensity = adsSpreadIntensity;
+    }
+
+    private void ExitAds()
+    {
+        animator.SetTrigger("EXIT_ADS");
+        isADS = false;
+        HUDManager.Instance.crosshair.SetActive(true);
+        spreadIntensity = hipSpreadIntensity;
+    }
     private void Reload()
     {
-        animator.SetTrigger("RELOAD");
+        if (isADS)
+        {
+            
+        }
+        else
+        {
+            animator.SetTrigger("RELOAD");
+        }
+        
         SoundManager.Instance.PlayReloadingSound(weaponModel);
         isReloading = true;
         readyToShoot = false;
@@ -229,7 +319,7 @@ public class BulletWeapon : Interactable
         Destroy(bullet);
     }
 
-    protected override void Interact(Interactable gameObject)
+    protected override void Interact(GameObject gameObject)
     {
             WeaponManager.Instance.PickUpWeapon(gameObject);
         
@@ -237,8 +327,13 @@ public class BulletWeapon : Interactable
 
     private void ChangeWeapon(int slot)
     {
-            WeaponManager.Instance.SwitchActiveWeapon(slot);
-        
-        
+       
+        WeaponManager.Instance.SwitchActiveWeapon(slot);
+
+    }
+
+    private void DropAction()
+    {
+        WeaponManager.Instance.DropCurrentWeapon();
     }
 }

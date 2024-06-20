@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 4f18c963b4abfb44ea53bc037e613775
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - magazineAmmoUI: {instanceID: 0}
+  - totalAmmoUI: {instanceID: 0}
+  - ammoTypeUI: {instanceID: 0}
+  - activeWeponUI: {instanceID: 0}
+  - unActiveWeponUI: {instanceID: 0}
+  - lethalUI: {instanceID: 0}
+  - lethalAmountUI: {instanceID: 0}
+  - tacticalUI: {instanceID: 0}
+  - tacticalAmounUI: {instanceID: 0}
+  - emptySlot: {instanceID: 0}
+  - crosshair: {fileID: 8417536541462262781, guid: a9b260ed9b90f6c43aa0e6b5207b47cb,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -15,6 +15,9 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource reloadingSoundAK47;
     public AudioClip ak47Shot;
+
+    public AudioSource reloadingSoundBennelli;
+    public AudioClip bennelliShot;
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -38,6 +41,9 @@ public class SoundManager : MonoBehaviour
             case WeaponModel.AK47:
                 shootingChannel.PlayOneShot(ak47Shot);
                 break;
+            case WeaponModel.BennelliM4:
+                shootingChannel.PlayOneShot(bennelliShot);
+                break;
         }
     }
     public void PlayReloadingSound(WeaponModel weaponModel)
@@ -49,6 +55,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case WeaponModel.AK47:
                 reloadingSoundAK47.Play();
+                break;
+            case WeaponModel.BennelliM4:
+                reloadingSoundBennelli.Play();
                 break;
         }
     }

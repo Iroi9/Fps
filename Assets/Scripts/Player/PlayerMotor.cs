@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
@@ -10,6 +11,8 @@ public class PlayerMotor : MonoBehaviour
     private bool isGrounded;
     private float gravity = -15f;
     [SerializeField] private float jumpHight = 3f;
+    private float sprinTime = 0f;
+    private float sprintDelay = 600f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,21 @@ public class PlayerMotor : MonoBehaviour
     void Update()
     {
         isGrounded = characterController.isGrounded;
+        if (sprinTime <= 0)
+        {
+            motorSpeed = 5f;
+            sprinTime = 600;
+
+        }
+        
+       
+        sprintDelay--;
+        sprinTime--;
+
+
     }
+
+   
     //recives input from InputManager.cs and apply to charchtercontroller
     public void ProcessMove(Vector2 input)
     {
@@ -35,13 +52,24 @@ public class PlayerMotor : MonoBehaviour
         }
         characterController.Move(playerVelocity * Time.deltaTime);
         
-
     }
 
-    public void Jump() { 
+    public void Jump() 
+    {
     if (isGrounded)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHight * -3.0f * gravity);
         }
+    }
+
+    public void Sprint()
+    {
+        if(motorSpeed == 5f && sprintDelay <= 0)
+        {
+            motorSpeed = 10f;
+            sprintDelay = 600f;
+            sprinTime = 600f;
+        }
+      
     }
 }
