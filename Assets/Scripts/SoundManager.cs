@@ -18,6 +18,10 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource reloadingSoundBennelli;
     public AudioClip bennelliShot;
+
+    public AudioSource throwableChannel;
+    public AudioClip explosion;
+    public AudioClip smoke;
     public void Awake()
     {
         if (Instance != null && Instance != this)

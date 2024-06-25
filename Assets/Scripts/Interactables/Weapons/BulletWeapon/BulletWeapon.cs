@@ -51,7 +51,9 @@ public class BulletWeapon : Interactable
     {
         Pistol1911,
         AK47,
-        BennelliM4
+        BennelliM4,
+        RPG7
+        
     }
 
     public WeaponModel weaponModel;
@@ -60,7 +62,8 @@ public class BulletWeapon : Interactable
     {
         Pistol,
         AssaultRifle,
-        Shotgun
+        Shotgun,
+        RocketLauncher
     }
     
     public WeaponType weaponType;
@@ -113,7 +116,7 @@ public class BulletWeapon : Interactable
             if (isActiveWeapon)
             {
 
-                if (playerInput.onFootActions.Ads.ReadValue<float>() == 1.0 && isADS == false)
+                if (playerInput.onFootActions.Ads.ReadValue<float>() == 1.0 && isADS == false && isReloading == false)
                 {
                    EnterAds();
                 }
@@ -254,15 +257,9 @@ public class BulletWeapon : Interactable
     }
     private void Reload()
     {
-        if (isADS)
-        {
-            
-        }
-        else
-        {
-            animator.SetTrigger("RELOAD");
-        }
-        
+      
+        animator.SetTrigger("RELOAD");
+ 
         SoundManager.Instance.PlayReloadingSound(weaponModel);
         isReloading = true;
         readyToShoot = false;

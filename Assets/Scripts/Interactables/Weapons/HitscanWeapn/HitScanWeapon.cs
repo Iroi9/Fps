@@ -8,7 +8,6 @@ public class HitScanWeapon : MonoBehaviour
 {
     private InputManager playerInput;
     [SerializeField] Transform bulletSpawn;
-    private Camera camera;
     [SerializeField] private LayerMask mask;
     [SerializeField] private float distance = 30f;
     // Start is called before the first frame update
@@ -28,7 +27,7 @@ public class HitScanWeapon : MonoBehaviour
 
     private void fireWeapon()
     {
-        Ray ray = new Ray(camera.transform.position, camera.transform.forward);
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * distance);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, distance, mask))

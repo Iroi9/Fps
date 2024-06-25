@@ -134,6 +134,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Lethal"",
+                    ""type"": ""Button"",
+                    ""id"": ""cfb915ca-b56a-46db-863a-4c70f76479cc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tactical"",
+                    ""type"": ""Button"",
+                    ""id"": ""28183919-8d4c-4c3c-b2b4-80c028bcd178"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -398,6 +416,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Ads"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3d23563-c29c-4d66-9b69-a72dfe2675ef"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lethal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d07b581f-3f02-44d4-a73b-b209b4876239"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tactical"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -936,6 +976,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_onFoot_Sprint = m_onFoot.FindAction("Sprint", throwIfNotFound: true);
         m_onFoot_Crouch = m_onFoot.FindAction("Crouch", throwIfNotFound: true);
         m_onFoot_Ads = m_onFoot.FindAction("Ads", throwIfNotFound: true);
+        m_onFoot_Lethal = m_onFoot.FindAction("Lethal", throwIfNotFound: true);
+        m_onFoot_Tactical = m_onFoot.FindAction("Tactical", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1021,6 +1063,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_onFoot_Sprint;
     private readonly InputAction m_onFoot_Crouch;
     private readonly InputAction m_onFoot_Ads;
+    private readonly InputAction m_onFoot_Lethal;
+    private readonly InputAction m_onFoot_Tactical;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -1037,6 +1081,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_onFoot_Sprint;
         public InputAction @Crouch => m_Wrapper.m_onFoot_Crouch;
         public InputAction @Ads => m_Wrapper.m_onFoot_Ads;
+        public InputAction @Lethal => m_Wrapper.m_onFoot_Lethal;
+        public InputAction @Tactical => m_Wrapper.m_onFoot_Tactical;
         public InputActionMap Get() { return m_Wrapper.m_onFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1082,6 +1128,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Ads.started += instance.OnAds;
             @Ads.performed += instance.OnAds;
             @Ads.canceled += instance.OnAds;
+            @Lethal.started += instance.OnLethal;
+            @Lethal.performed += instance.OnLethal;
+            @Lethal.canceled += instance.OnLethal;
+            @Tactical.started += instance.OnTactical;
+            @Tactical.performed += instance.OnTactical;
+            @Tactical.canceled += instance.OnTactical;
         }
 
         private void UnregisterCallbacks(IOnFootActions instance)
@@ -1122,6 +1174,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Ads.started -= instance.OnAds;
             @Ads.performed -= instance.OnAds;
             @Ads.canceled -= instance.OnAds;
+            @Lethal.started -= instance.OnLethal;
+            @Lethal.performed -= instance.OnLethal;
+            @Lethal.canceled -= instance.OnLethal;
+            @Tactical.started -= instance.OnTactical;
+            @Tactical.performed -= instance.OnTactical;
+            @Tactical.canceled -= instance.OnTactical;
         }
 
         public void RemoveCallbacks(IOnFootActions instance)
@@ -1271,6 +1329,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnAds(InputAction.CallbackContext context);
+        void OnLethal(InputAction.CallbackContext context);
+        void OnTactical(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

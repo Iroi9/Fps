@@ -13,13 +13,13 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField] private float jumpHight = 3f;
     private float sprinTime = 0f;
     private float sprintDelay = 600f;
-    // Start is called before the first frame update
+    
     void Start()
     {
        characterController = GetComponent<CharacterController>(); 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         isGrounded = characterController.isGrounded;

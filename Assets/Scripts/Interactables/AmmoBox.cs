@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AmmoBox : Interactable
-{
+{   
+    /// <summary>
+    /// This Class describes the Interactable of the AmmoBox
+    /// </summary>
+
+
+    ///
     float displayTime;
     
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    /// <summary>
+    /// The method restores the original promtMessage
+    /// after a certain delay
+    /// </summary>
     void Update()
     {
         if (displayTime <= 0)
@@ -22,7 +24,12 @@ public class AmmoBox : Interactable
         }
         displayTime--;
     }
-
+    /// <summary>
+    /// This method handels the interaction with the AmmoBox
+    /// If no active Weapon is found recplaces the prompt message accordingly for 300 frames (5 seconds)
+    /// other wise refills Ammo
+    /// </summary>
+    /// <param name="gameObject"></param> is not used, is here because of inheretance
     protected override void Interact(GameObject gameObject)
     {
         BulletWeapon currWeapon = WeaponManager.Instance.activeWeapon.GetComponentInChildren<BulletWeapon>();

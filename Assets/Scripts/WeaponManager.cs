@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class WeaponManager : MonoBehaviour
@@ -17,6 +19,22 @@ public class WeaponManager : MonoBehaviour
     public GameObject activeWeapon;
 
     public int slot = 0;
+    public float weaponThrowForce = 20f;
+
+    [SerializeField]InputManager playerInput;
+    
+    public GameObject throwableSpawn;
+    public float throwForce;
+
+    public int letahls = 0;
+    public int maxLethals = 2;
+    public GameObject grenadePrefab;
+    public Throwable.ThowableTyp equipedLethal;
+
+    public int tacticals = 0;
+    public int maxTacticals = 2;
+    public GameObject smokePrefab;
+    public Throwable.ThowableTyp equipedTactical;
 
     private void Awake()
     {
@@ -33,6 +51,8 @@ public class WeaponManager : MonoBehaviour
     private void Start()
     {
         activeWeapon = weapons[0];
+        equipedLethal = Throwable.ThowableTyp.None;
+        equipedTactical = Throwable.ThowableTyp.None;
     }
 
     private void Update()
@@ -48,7 +68,18 @@ public class WeaponManager : MonoBehaviour
                 weapon.SetActive(false);
             }
         }
+
+        if (playerInput.onFootActions.Lethal.WasReleasedThisFrame())
+        {
+            ThrowLetahls();
+        }
+        if (playerInput.onFootActions.Tactical.WasReleasedThisFrame())
+        {
+            ThrowTacticals();
+        }
     }
+
+   
 
     public void PickUpWeapon(GameObject gameObject)
     {
@@ -66,6 +97,67 @@ public class WeaponManager : MonoBehaviour
 
     }
 
+    public void PickUpThrowable(GameObject gameObject)
+    {
+        Throwable throwable = gameObject.GetComponent<Throwable>();
+        switch (throwable.throwableClass)
+        {
+            case Throwable.ThrowableClass.Lethal:
+                PickUpLethal(throwable.thowableTyp, gameObject);
+                break;
+            case Throwable.ThrowableClass.Tactical:
+                PickUpTactical(throwable.thowableTyp, gameObject);
+                break;
+        }
+        
+    }
+
+    private void PickUpTactical(Throwable.ThowableTyp thowableTyp, GameObject gameObject)
+    {
+        if (equipedTactical == thowableTyp || equipedTactical == Throwable.ThowableTyp.None)
+        {
+            if (equipedTactical == Throwable.ThowableTyp.None)
+            {
+                equipedTactical = thowableTyp;
+            }
+            if (tacticals < maxTacticals)
+            {
+                tacticals++;
+                HUDManager.Instance.UpdateThorwableUI();
+                Destroy(gameObject);
+            }
+
+        }
+        else
+        {
+            //TODO ADD TACTICAL SWITCH
+        }
+    }
+
+    public void PickUpLethal(Throwable.ThowableTyp thowableTyp ,GameObject gameObject)
+    {
+        if (equipedLethal == thowableTyp || equipedLethal == Throwable.ThowableTyp.None)
+        {
+            if (equipedLethal == Throwable.ThowableTyp.None)
+            {
+                equipedLethal = thowableTyp;
+            }
+            if (letahls < maxLethals)
+            {
+                letahls++;
+               
+                HUDManager.Instance.UpdateThorwableUI();
+                Destroy(gameObject);
+            }
+            
+        }
+        else
+        {
+           //TODO ADD LETHAL SWITCH
+        }
+        
+
+    }
     private void AddWeaponIntoActiveSlot(GameObject gameObject)
     {
         BulletWeapon weapon = gameObject.GetComponent<BulletWeapon>();
@@ -129,8 +221,8 @@ public class WeaponManager : MonoBehaviour
             weaponToDrop.GetComponent<BulletWeapon>().animator.enabled = false;
             weaponToDrop.AddComponent<Rigidbody>();
             weaponToDrop.GetComponent<Rigidbody>().mass = 2f;
-            weaponToDrop.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 400);
-            weaponToDrop.GetComponent<Rigidbody>().AddRelativeForce(Vector3.back * 400);
+            weaponToDrop.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * weaponThrowForce);
+            weaponToDrop.GetComponent<Rigidbody>().AddRelativeForce(Vector3.back * weaponThrowForce);
 
 
         }
@@ -167,5 +259,66 @@ public class WeaponManager : MonoBehaviour
             newWeapon.isActiveWeapon = true;
             }
         }
+    }
+
+    public void ThrowLetahls()
+    {
+        if (letahls > 0) {
+            GameObject prefab = GetThrowablePreFab(equipedLethal);
+
+            GameObject throwable = Instantiate(prefab, throwableSpawn.transform.position, Camera.main.transform.rotation);
+
+            Rigidbody rb = throwable.GetComponent<Rigidbody>();
+            rb.AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
+
+            throwable.GetComponent<Throwable>().hasBeenThrown = true;
+
+            letahls--;
+            if (letahls <= 0) 
+            {
+                equipedLethal = Throwable.ThowableTyp.None;
+            }
+            HUDManager.Instance.UpdateThorwableUI();
+            throwable.layer = LayerMask.NameToLayer("Default");
+            
+
+        }
+    }
+
+    private void ThrowTacticals()
+    {
+        if (tacticals > 0)
+        {
+            GameObject prefab = GetThrowablePreFab(equipedTactical);
+
+            GameObject throwable = Instantiate(prefab, throwableSpawn.transform.position, Camera.main.transform.rotation);
+
+            Rigidbody rb = throwable.GetComponent<Rigidbody>();
+            rb.AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
+
+            throwable.GetComponent<Throwable>().hasBeenThrown = true;
+
+            tacticals--;
+            if (tacticals <= 0)
+            {
+                equipedLethal = Throwable.ThowableTyp.None;
+            }
+            HUDManager.Instance.UpdateThorwableUI();
+            throwable.layer = LayerMask.NameToLayer("Default");
+
+
+        }
+    }
+
+    private GameObject GetThrowablePreFab(Throwable.ThowableTyp thowableTyp)
+    {
+        switch (thowableTyp)
+        {
+            case Throwable.ThowableTyp.Grenade:
+                return grenadePrefab;
+            case Throwable.ThowableTyp.Smoke:
+                return smokePrefab;
+        }
+        return new();
     }
 }

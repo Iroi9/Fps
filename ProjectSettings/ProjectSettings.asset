@@ -897,11 +897,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 804e2902-9b3c-4a15-9460-466f33c9212b
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Fps
+  organizationId: gamecenter19
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
